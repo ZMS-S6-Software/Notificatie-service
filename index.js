@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 //server aanmaken
-const PORT = process.env.PORT;
+const PORT = '8085';
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

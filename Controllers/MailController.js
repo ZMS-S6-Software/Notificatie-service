@@ -4,13 +4,13 @@ import { connect } from 'amqplib';
 const connection = await connect(`amqp://${process.env.RABBITMQ_HOST || 'localhost'}`);
 
 const channel = await connection.createChannel();
-const queue = 'message';
+const queue = 'uploadedvideo';
 await channel.assertQueue(queue, { durable:false });
 
 channel.consume(queue, (msg) => {
   try {
     const receivedMsg = JSON.parse(msg.content.toString());
-    if (receivedMsg.title === 'uploadedVideo') {
+    if (receivedMsg.title === 'uploadedvideo') {
       console.log(receivedMsg)
       channel.ack(msg);
     }
