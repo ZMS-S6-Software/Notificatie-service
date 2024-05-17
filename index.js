@@ -1,6 +1,17 @@
-// iets importeren
-import * as fs from 'fs';
-import {fileReader} from 'fs';
+import express from 'express';
+//controllers
+import mailController from "./Controllers/MailController.js";
 
-//nodejs documentatie
-// https://nodejs.org/api/fs.html
+
+//app aanmaken
+const app = express();
+app.use(express.json());
+
+//server aanmaken
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+//controller inlezen
+mailController(app)
